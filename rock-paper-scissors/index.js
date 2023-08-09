@@ -56,15 +56,8 @@ const predictMatch = (move, condition) => {
 
 }
 
-/*
-	*
-	for(let i = 0; i < lines.length - 1; i++){
-		let temp = lines[i].split(' ').join('');
-		let [move, condition] = [temp[0], temp[1]];
-		console.log(`${move} x ${condition}`)
-		sum += predictMatch(move, condition);
-	}
-	* */
+for(let i = 0; i < lines.length - 1; i++){ let temp = lines[i].split(' ').join('');
+	sum += predictMatch(lines[i].split(' ').join('')[0], lines[i].split(' ').join('')[1]);
+}
 
-
-console.log(predictMatch('A', 'X'));
+console.log(sum)
