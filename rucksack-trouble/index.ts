@@ -33,10 +33,7 @@ const getItemType = (compartment1 : string, compartment2: string) =>{
 		for (let m = 0; m < d_comp1.length; m++){
 			if(d_comp1[k] === d_comp2[m])
 				{
-					return  { 
-						a: [d_comp1[k], k],
-						b: [d_comp2[m], m],
-					}
+					return compartment1.charCodeAt(k)   
 				}
 		}
 	}
@@ -44,9 +41,7 @@ const getItemType = (compartment1 : string, compartment2: string) =>{
 }
 
 const priorityScoreParser = (itemType : string) => {
-	let lower = {
-
-	}	
+	
 }
 
 
@@ -56,7 +51,9 @@ const main =  (rucksack : string) =>{
 
 	let [comp1, comp2] = [rucksack.slice(0, middleIndex - 1), rucksack.slice(middleIndex, l - 1)]
 	let output = (getItemType(comp1, comp2)) 
-	console.log(output?.a[0]);
+	//console.log(output);
+	console.log(('a'.charCodeAt(0) - 96))
+	console.log('z'.charCodeAt(0) - 96)
 }
 
 for (let i = 0; i < 2; i++){
