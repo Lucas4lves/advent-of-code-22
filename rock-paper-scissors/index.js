@@ -24,39 +24,60 @@ for(let i = 0; i < lines.length - 1; i++){
 //TODO: I'll catch up with the second half of it later :D
 
 const predictMatch = (move, condition) => {
+
+	let scores = {
+		'Paper': {
+			win: 8,
+			lose: 2,
+			draw: 5
+		},
+		'Rock': {
+			win: 7,
+			lose: 1,
+			draw: 4
+		},
+		'Scissors': {
+			win: 9,
+			lose: 3,
+			draw: 6
+		},
+	}
+
 	let opponentsMoves = {
 		'A': {
-			losesTo: ['Paper', 8],
-			winsWith: ['Scissors', 3],
-			tiesWith: ['Rock', 2]
+			losesTo: 'Paper', // 2 + 6
+			winsWith: 'Scissors', // 0 + 3 
+			tiesWith: 'Rock',  // 1 + 1
 		},
 		'B':{
-			losesTo: ['Scissors', 9],
-			winsWith: ['Rock', 1],
-			tiesWith: ['Paper', 4]
+			losesTo: 'Scissors',  //6 + 3
+			winsWith: 'Rock',  // 0 + 1
+			tiesWith: 'Paper',  // 2 + 2
 		},
 		'C':{
-			losesTo: ['Rock', 7],
-			winsWith: ['Paper', 2],
-			tiesWith: ['Scissors', 6]
+			losesTo: 'Rock', //1 + 6
+			winsWith: 'Paper', // 0 + 2 
+			tiesWith: 'Scissors',  // 3 + 3 
 		},
 		
 	}
 
 	switch(condition){
 		case 'X':
-			return opponentsMoves[`${move}`].losesTo[1];
+			return scores[opponentsMoves[`${move}`].winsWith]['lose'];
 		case 'Y':
-			return opponentsMoves[`${move}`].tiesWith[1];
+			return scores[opponentsMoves[`${move}`].tiesWith]['draw'];
 		case 'Z':
-			return opponentsMoves[`${move}`].winsWith[1];
+			return scores[opponentsMoves[`${move}`].losesTo]['win'];
 		default:
 			throw new Error('Match prediction error');
 	}
 
 }
 
-for(let i = 0; i < lines.length - 1; i++){ let temp = lines[i].split(' ').join('');
+sum = 0;
+
+for(let i = 0; i < lines.length - 1; i++){ 
 	sum += predictMatch(lines[i].split(' ').join('')[0], lines[i].split(' ').join('')[1]);
 }
 
