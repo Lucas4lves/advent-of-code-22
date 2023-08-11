@@ -4,11 +4,6 @@
 
 const input = require('node:fs').readFileSync('./input', 'utf8');
 
-interface Output {
-	a : Array<any>,
-	b : Array<any>,
-
-}
 const lines = input.split('\n')
 
 const getLineLength = (l : string) =>{
@@ -28,35 +23,50 @@ const toArray = (str: string) : Array<string> =>{
 const getItemType = (compartment1 : string, compartment2: string) =>{
 	let d_comp1 = toArray(compartment1);
 	let d_comp2 = toArray(compartment2);
-	
+	let output : string;
 	for(let k = 0; k < d_comp1.length; k++){
 		for (let m = 0; m < d_comp1.length; m++){
 			if(d_comp1[k] === d_comp2[m])
 				{
-					return compartment1.charCodeAt(k)   
+					output = compartment1[k];
+					return  output; 
 				}
 		}
 	}
 
 }
 
-const priorityScoreParser = (itemType : string) => {
+const charCodeParser = (char : string | undefined) : number | 0 => {
+	let input = char?.charCodeAt(0);
+	if(!input){
+		return 0;
+	}
+	if(input >= 65 && input < 96) {
+		return input - 38 
+	} 
 	
+	return input - 96 
 }
 
-
-const main =  (rucksack : string) =>{
+const main =  (rucksack : string) : number | 0 => {
+	if(!rucksack)
+		{
+			return 0;
+		}
 	let l = getLineLength(rucksack);
+
 	let middleIndex = (l - 1)/2;
 
 	let [comp1, comp2] = [rucksack.slice(0, middleIndex - 1), rucksack.slice(middleIndex, l - 1)]
 	let output = (getItemType(comp1, comp2)) 
-	//console.log(output);
-	console.log(('a'.charCodeAt(0) - 96))
-	console.log('z'.charCodeAt(0) - 96)
+
+	return charCodeParser(output);
 }
 
-for (let i = 0; i < 2; i++){
-	console.log(`ruck${i}: `, lines[i]);
-	main(lines[i]);
-}
+let sum = 0;
+
+lines.forEach((line : string) =>{
+	sum += main(line); 
+})
+
+console.log(sum);
