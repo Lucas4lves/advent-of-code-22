@@ -25,7 +25,6 @@ const getItemType = (compartment1 : string, compartment2: string) =>{
 	for(let k = 0; k < compartment1.length; k++){
 		for (let m = 0; m < compartment2.length; m++){
 			if(compartment1[k].charCodeAt(0) === compartment2[m].charCodeAt(0)){		
-					console.log(`cp1: ${compartment1[k]} - ${compartment2[m]}`)
 					return compartment1[k];
 				}
 		}
@@ -55,17 +54,17 @@ const main =  (rucksack : string) : number => {
 	let middleIndex = l/2;
 
 	let [comp1, comp2] = [rucksack.slice(0, middleIndex), rucksack.slice(middleIndex, l)]
-	console.log(comp1);
-	console.log(comp2);
 	let output = getItemType(comp1, comp2) 
 
 	return charCodeParser(output);
 }
 
 let sum = 0;
+let group = [];
 
-lines.forEach((line : string) =>{
-	sum += main(line); 
-})
+for(let i = 0; i < lines.length; i++){
+	group.push(lines[i])
+	
+}
 
 console.log(sum);
