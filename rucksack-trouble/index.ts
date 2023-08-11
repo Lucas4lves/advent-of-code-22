@@ -21,25 +21,26 @@ const toArray = (str: string) : Array<string> =>{
 }
 
 const getItemType = (compartment1 : string, compartment2: string) =>{
-	let d_comp1 = toArray(compartment1);
-	let d_comp2 = toArray(compartment2);
-	let output : string;
-	for(let k = 0; k < d_comp1.length; k++){
-		for (let m = 0; m < d_comp1.length; m++){
-			if(d_comp1[k] === d_comp2[m])
-				{
-					output = compartment1[k];
-					return  output; 
+	let matches = 0;
+	for(let k = 0; k < compartment1.length; k++){
+		for (let m = 0; m < compartment2.length; m++){
+			if(compartment1[k].charCodeAt(0) === compartment2[m].charCodeAt(0)){		
+					console.log(`cp1: ${compartment1[k]} - ${compartment2[m]}`)
+					return compartment1[k];
 				}
 		}
 	}
+	
 
 }
 
-const charCodeParser = (char : string | undefined) : number | 0 => {
+
+debugger
+
+const charCodeParser = (char : string | undefined) : number => {
 	let input = char?.charCodeAt(0);
-	if(!input){
-		return 0;
+	if(input === undefined){
+		return 0;	
 	}
 	if(input >= 65 && input < 96) {
 		return input - 38 
@@ -48,17 +49,15 @@ const charCodeParser = (char : string | undefined) : number | 0 => {
 	return input - 96 
 }
 
-const main =  (rucksack : string) : number | 0 => {
-	if(!rucksack)
-		{
-			return 0;
-		}
+const main =  (rucksack : string) : number => {
 	let l = getLineLength(rucksack);
 
-	let middleIndex = (l - 1)/2;
+	let middleIndex = l/2;
 
-	let [comp1, comp2] = [rucksack.slice(0, middleIndex - 1), rucksack.slice(middleIndex, l - 1)]
-	let output = (getItemType(comp1, comp2)) 
+	let [comp1, comp2] = [rucksack.slice(0, middleIndex), rucksack.slice(middleIndex, l)]
+	console.log(comp1);
+	console.log(comp2);
+	let output = getItemType(comp1, comp2) 
 
 	return charCodeParser(output);
 }
