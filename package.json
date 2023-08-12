@@ -1,0 +1,15 @@
+{
+  "name": "advent-of-code",
+  "version": "1.0.0",
+  "description": "* This repo is a record of my attempts on solving AoC's challenges.  * I can't promise now that I'll do it til the end hehe",
+  "main": "index.js",
+  "devDependencies": {
+    "@types/node": "^20.4.10"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
