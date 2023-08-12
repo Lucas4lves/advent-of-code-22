@@ -21,7 +21,6 @@ const toArray = (str: string) : Array<string> =>{
 }
 
 const getItemType = (compartment1 : string, compartment2: string) =>{
-	let matches = 0;
 	for(let k = 0; k < compartment1.length; k++){
 		for (let m = 0; m < compartment2.length; m++){
 			if(compartment1[k].charCodeAt(0) === compartment2[m].charCodeAt(0)){		
@@ -29,12 +28,9 @@ const getItemType = (compartment1 : string, compartment2: string) =>{
 				}
 		}
 	}
-	
-
 }
 
 
-debugger
 
 const charCodeParser = (char : string | undefined) : number => {
 	let input = char?.charCodeAt(0);
@@ -60,11 +56,15 @@ const main =  (rucksack : string) : number => {
 }
 
 let sum = 0;
-let group = [];
+let group : Array<string> = [];
+let partial = 0; 
 
-for(let i = 0; i < lines.length; i++){
-	group.push(lines[i])
-	
+
+for(let k = 0; k < lines.length; k++){
+	group.push(lines[k]);
+	if(group.length >= 3){
+
+		group = []; 
+	}
 }
 
-console.log(sum);
