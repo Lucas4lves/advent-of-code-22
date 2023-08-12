@@ -59,12 +59,39 @@ let sum = 0;
 let group : Array<string> = [];
 let partial = 0; 
 
+const getGroupType = (group : Array<string>) =>{
+	// sorting a group by string length
+	for(let i = 0; i < group.length; i++){
+		for (let j = 0; j < group.length; j++){
+			if(group[i].length < group[j].length){
+				let temp = group[i];
+				group[i] = group[j];
+				group[j] = temp;
+			}
+		}		
+	}
+
+	console.log(group);
+
+	for(let i = 0; i < group[0].length; i++){
+		if(group[1].includes(group[0][i])){
+			if(group[2].includes(group[0][i])){
+				console.log(`Common char: ${group[0][i]}`)
+				return group[0][i];
+			}
+		}	
+	}
+}
+
+let newSum = 0;
 
 for(let k = 0; k < lines.length; k++){
 	group.push(lines[k]);
 	if(group.length >= 3){
-
-		group = []; 
+		newSum += charCodeParser(getGroupType(group));
+		group = [];
+		console.log("_______")
 	}
 }
 
+console.log(newSum);
