@@ -2,24 +2,25 @@ const input = require('node:fs').readFileSync('./input', 'utf8');
 
 const lines = input.split('\n')
 
-const formatPairs = (pair: Array<string>) =>{
-	let [a, b] = [pair[0], pair[1]];
-	return {
-		a: a.replace('-', ','),
-		b: b.replace('-', ',')
-	}
+interface IntervalPair  {
+	first: string[],
+	second: string[]
 }
 
-const pairs = lines.map((line : string) =>{
-	if(!line){
-		return; 
+
+const pairs = lines.map((index : string) =>{
+	if(!index){
+		return;
 	}
 
-	let pair = formatPairs(line.split(",")) 
-
+	let output = index.split(',');
+	let [first, second] = [output[0].split('-'), output[1].split('-')];
 	return {
-		pair 
+		first,
+		second
 	}
 })
 
 console.log(pairs);
+
+//console.log(lines);
